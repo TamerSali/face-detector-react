@@ -7,16 +7,19 @@ import React from 'react'
  */
 import { TextField, Button, Box } from '@material-ui/core'
 
-export default function ImageLinkForm() {
+export default function ImageLinkForm({ onChange, value, onSubmit }) {
     return (
         <Box className="input-box" boxShadow={3}>
-            <form>
+            <form onSubmit={onSubmit}>
                 <TextField
+                    id="filled-basic"
                     className="text-field"
                     label="Image URL"
                     variant="filled"
                     fullWidth
                     required
+                    onChange={onChange}
+                    userInput={value}
                 />
                 <Button
                     variant="contained"
