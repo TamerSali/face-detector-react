@@ -2,6 +2,7 @@
  * External Dependencies.
  */
 import React from 'react'
+import PropTypes from 'prop-types'
 /**
  * Internal Dependencies.
  */
@@ -10,7 +11,7 @@ import { TextField, Button, Box } from '@material-ui/core'
 export default function ImageLinkForm({ onChange, userInput, onSubmit }) {
     return (
         <Box className="input-box" boxShadow={3}>
-            <form onSubmit={onSubmit}>
+            <form >
                 <TextField
                     id="filled-basic"
                     className="text-field"
@@ -26,10 +27,34 @@ export default function ImageLinkForm({ onChange, userInput, onSubmit }) {
                     className="detect-button"
                     size="small"
                     color="primary"
+                    onClick={onSubmit}
                 >
-                    Detect The Faces
+                    Detect
                 </Button>
             </form>
         </Box>
     )
+}
+ImageLinkForm.propTypes = {
+
+    /**
+     * Input value.
+     *
+     * @type {String}
+     */
+    userInput: PropTypes.string,
+
+    /**
+     * Handle input change.
+     *
+     * @type  {Function}
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * Handle user submit.
+     *
+     * @type  {Function}
+     */
+    onSubmit: PropTypes.func,
 }
