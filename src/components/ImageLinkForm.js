@@ -5,11 +5,11 @@ import React from 'react'
 /**
  * Internal Dependencies.
  */
-import { TextField, Button } from '@material-ui/core'
+import { TextField, Button, Box } from '@material-ui/core'
 
 export default function ImageLinkForm() {
     return (
-        <div className="input-box">
+        <Box className="input-box" boxShadow={3}>
             <form>
                 <TextField
                     className="text-field"
@@ -18,15 +18,15 @@ export default function ImageLinkForm() {
                     fullWidth
                     required
                 />
-                <Button 
-                    variant="contained" 
-                    className="detect-button" 
-                    size="small" 
-                    color="primary" 
+                <Button
+                    variant="contained"
+                    className="detect-button"
+                    size="small"
+                    color="primary"
                 >
                     Detect The Faces
                 </Button>
             </form>
-        </div>
+        </Box>
     )
 }
