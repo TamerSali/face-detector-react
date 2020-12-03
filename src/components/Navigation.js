@@ -9,7 +9,7 @@ import logo from '../assets/logo.svg'
 import Tilt from 'react-tilt'
 import { Button } from '@material-ui/core'
 
-export default function Navigation() {
+export default function Navigation({ userObject }) {
 	return (
 		<nav className="navbar">
 			<div className="app-logo">
@@ -19,7 +19,13 @@ export default function Navigation() {
 					</div>
 				</Tilt>
 			</div>
-			 <Button size="small" variant="outlined">Log Out</Button>
+			<Button
+				size="small"
+				variant="outlined"
+				style={Object.keys(userObject).length ? { display: "block" } : { display: "none" }}
+			>
+				Log Out
+			 </Button>
 		</nav>
 	)
 }
