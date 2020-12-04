@@ -9,8 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #4e54c8;
-  background: linear-gradient(to right, #8f94fb, #4e54c8);
+  background: #302b63;
+  background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   height: 100vh;
 }
 
@@ -22,49 +22,79 @@ img {
   user-select: none;
   -webkit-user-drag: none;
 }
-
-.app-header {
-  display: flex;
-
-  /**
- * Logo component
+/**
+ * Particles component
  */
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/**
+   * Navigation component
+ */
+.navbar {
+  display: flex;
+  z-index: 11;
   .app-logo {
     display: inline-block !important;
     margin: 10px;
+    z-index: 12;
     img {
       width: 100%;
       height: 100%;
     }
   }
-  /**
- * Navigation component
- */
-  .navbar {
-    margin-left: auto;
-    align-self: flex-start;
-    Button {
-      margin: 30px 10px 0 0;
-      color: white;
-      border-color: white;
-    }
+  Button {
+    z-index: 12;
+    align-self: center;
+    margin: -25px 10px 0 auto;
+    color: white;
+    border-color: white;
+    text-transform: capitalize;
   }
 }
+/**
+ * SignIn component
+ */
+.sign-container {
+  position: relative;
+  background-color: rgb(231, 231, 231);
+  border-radius: 15px;
+  z-index: 14;
+  a {
+    text-decoration: none;
+  }
+}
+/**
+ * Main Components
+ */
 
 main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60vh;
+  flex-direction: column;
   width: 100%;
+  /**
+   * ImageLinkForm component.
+   */
   .input-box {
+    z-index: 15;
+    border-radius: 20px;
     width: 60%;
+    padding: 30px;
+    background: #24243e;
     form {
       display: flex;
       .text-field {
         margin: auto;
         label {
-          color: white;
+          color: rgb(216, 215, 215);
         }
         input {
           color: white;
@@ -74,7 +104,25 @@ main {
   }
   .detect-button {
     margin-left: 10px;
-    width: 20% !important;
+    width: 22% !important;
     text-transform: capitalize;
+  }
+  /**
+   * FaceRecognition component
+   */
+  .image-with-faces {
+    z-index: 16;
+    margin-top: 10px;
+    section {
+      position: relative;
+    }
+    .bounding-box {
+      position: absolute;
+      box-shadow: 0 0 5px 5px white, inset 0 0 5px 5px white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      cursor: pointer;
+    }
   }
 }
