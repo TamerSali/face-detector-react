@@ -2,6 +2,7 @@
  * External Dependencies.
  */
 import React from 'react'
+import PropTypes from 'prop-types'
 /**
  * Internal Dependencies.
  */
@@ -9,7 +10,7 @@ import logo from '../assets/logo.svg'
 import Tilt from 'react-tilt'
 import { Button } from '@material-ui/core'
 
-export default function Navigation({ userObject }) {
+export default function Navigation({ userObject, setUserObject }) {
 	return (
 		<nav className="navbar">
 			<div className="app-logo">
@@ -23,9 +24,26 @@ export default function Navigation({ userObject }) {
 				size="small"
 				variant="outlined"
 				style={Object.keys(userObject).length ? { display: "block" } : { display: "none" }}
+				onClick={() => setUserObject({})}
 			>
 				Log Out
 			 </Button>
 		</nav>
 	)
+}
+
+Navigation.propTypes = {
+	/**
+	 * Current user.
+	 *
+	 * @type {Object}
+	 */
+	userObject: PropTypes.object,
+
+	/**
+	 * Set current user.
+	 *
+	 * @type {Function}
+	 */
+	setUserObject: PropTypes.func
 }
