@@ -20,6 +20,8 @@ export default function Navigation({ userObject, setUserObject }) {
 					</div>
 				</Tilt>
 			</div>
+			<div className="log-out">
+			<h3>{userObject.name}</h3>
 			<Button
 				size="small"
 				variant="outlined"
@@ -28,6 +30,8 @@ export default function Navigation({ userObject, setUserObject }) {
 			>
 				Log Out
 			 </Button>
+			</div>
+			
 		</nav>
 	)
 }
