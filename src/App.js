@@ -65,13 +65,12 @@ const particlesOptions = {
 	}
 }
 
-
 function App() {
 
 	const [value, setValue] = useState("");
 	const [imageURL, setImageURL] = useState("");
 	const [box, setBox] = useState({})
-	const [currentUser, setCurrentUser] = useState({});
+	const [currentUser, setCurrentUser] = useState({ id: '', name: '', email: '', joined: '' });
 
 	/**
 	 * Handle user input.
@@ -132,7 +131,7 @@ function App() {
 	 * @return  {Void}
 	 */
 	const protectedRoute = () => {
-		return !Object.keys(currentUser).length ? (
+		return !Object.values(currentUser).some(value => value) ? (
 			<Redirect to="/signin" />
 		) : (
 				<Redirect to="/" />
@@ -160,8 +159,8 @@ function App() {
 						</main>
 					</Route>
 
-					<Route path="/signin" component={SignIn} />
-					<Route path="/signup" component={SignUp} />
+					<Route path="/signin" component={() => <SignIn setUserObject={setCurrentUser} />} />
+					<Route path="/signup" component={() => <SignUp setUserObject={setCurrentUser} />} />
 					<Route path="*">
 						{protectedRoute()}
 					</Route>
