@@ -1,7 +1,9 @@
 /**
  * External Dependencies.
  */
-import React from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+
 /**
  * Internal Dependencies.
  */
@@ -37,17 +39,69 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignIn() {
+export default function SignIn({ setUserObject }) {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errors, setErrors] = useState("");
+
 	const classes = useStyles();
+
+	/**
+	 * Handle user email.
+	 *
+	 * @param   {Object}  e 
+	 * @return  {Void}  
+	 */
+	const handleUserEmail = e => {
+		setEmail(e.target.value)
+	}
+
+	/**
+	 * Handle user password.
+	 *
+	 * @param   {Object}  e 
+	 * @return  {Void}  
+	 */
+	const handleUserPassword = e => {
+		setPassword(e.target.value)
+	}
+
+	/**
+	 * Handle user submit.
+	 *
+	 * @param  {Object} e
+	 * @return {Void}
+	 */
+	const handleSubmit = e => {
+
+		fetch("http://localhost:4000/signin", {
+			method: "post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email,
+				password
+			})
+		})
+			.then(response => response.json())
+			.then(data => data === "Success" ? setUserObject({ name: "Test" }) : setErrors(data.toString()))
+			.catch(error => setErrors(error));
+
+		e.preventDefault();
+
+	}
+
 	return (
 		<Container maxWidth="xs" className="sign-container">
 			<div className={classes.paper}>
+				{errors && (
+					<div>{errors}</div>
+				)}
 				<Avatar className={classes.avatar}>
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					Sign in
 				</Typography>
-				<form className={classes.form} noValidate >
+				<form className={classes.form} noValidate onSubmit={handleSubmit} >
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -58,6 +112,7 @@ export default function SignIn() {
 						name="email"
 						autoComplete="email"
 						autoFocus
+						onChange={handleUserEmail}
 					/>
 					<TextField
 						variant="outlined"
@@ -69,6 +124,8 @@ export default function SignIn() {
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						onChange={handleUserPassword}
+
 					/>
 					<FormControlLabel
 						control={<Checkbox value="remember" color="primary" />}
@@ -94,5 +151,13 @@ export default function SignIn() {
 	);
 }
 
-
+SignIn.propTypes = {
+	
+	/**
+	 * Set current user.
+	 *
+	 * @type {Function}
+	 */
+	setUserObject: PropTypes.func
+}
 
