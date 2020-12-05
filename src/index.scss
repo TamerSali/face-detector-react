@@ -49,13 +49,19 @@ img {
       height: 100%;
     }
   }
-  Button {
-    z-index: 12;
-    align-self: center;
-    margin: -25px 10px 0 auto;
-    color: white;
-    border-color: white;
-    text-transform: capitalize;
+  .log-out {
+    margin: 5px 10px 0 auto;
+    color: white !important;
+    h3 {
+      text-align: center;
+    }
+    button {
+      z-index: 12;
+      align-self: center;
+      border-color: white;
+      color: white;
+      text-transform: capitalize;
+    }
   }
 }
 /**
