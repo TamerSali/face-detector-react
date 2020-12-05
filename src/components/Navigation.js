@@ -22,7 +22,7 @@ export default function Navigation({ userObject, setUserObject }) {
 			</div>
 			{Object.values(userObject).some(value => value) && (
 				<div className="log-out">
-					<h3 h3 > {userObject.name}</h3>
+					<h3> {userObject.name}</h3>
 					<Button
 						size="small"
 						variant="outlined"
