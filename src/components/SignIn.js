@@ -43,7 +43,6 @@ export default function SignIn({ setUserObject }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errors, setErrors] = useState("");
-
 	const classes = useStyles();
 
 	/**
@@ -83,11 +82,9 @@ export default function SignIn({ setUserObject }) {
 			})
 		})
 			.then(response => response.json())
-			.then(data => data === "Success" ? setUserObject({ name: "Test" }) : setErrors(data.toString()))
+			.then(user => typeof user === "object" ? setUserObject(user) : setErrors(user))
 			.catch(error => setErrors(error));
-
 		e.preventDefault();
-
 	}
 
 	return (
@@ -152,7 +149,7 @@ export default function SignIn({ setUserObject }) {
 }
 
 SignIn.propTypes = {
-	
+
 	/**
 	 * Set current user.
 	 *
